@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config.SECREY_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config.DEBUG
+DEBUG = False
 
 # ALLOWED_HOSTS = []
 # if DEBUG:
@@ -63,10 +63,10 @@ MIDDLEWARE = [
 
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-name',
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
+
 
 ROOT_URLCONF = 'main.urls'
 
