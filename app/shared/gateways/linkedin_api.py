@@ -2,8 +2,9 @@ import requests
 from shared.utils.cache import cache
 
 class LinkedinApiGateway:
-    def getFormJob(self, form_id, call: requests.Session):
-        url = 'https://www.linkedin.com/voyager/api/graphql?variables=(jobPostingUrn:urn%3Ali%3Afsd_jobPosting%3A4136117673)&queryId=voyagerJobsDashOnsiteApplyApplication.1e0753b642bdc5f84b0d2652f2080958'
+    def getFormJob(self, jobPostingId, call: requests.Session):
+        url = f'https://www.linkedin.com/voyager/api/graphql?variables=(jobPostingUrn:urn%3Ali%3Afsd_jobPosting%3A{jobPostingId})&queryId=voyagerJobsDashOnsiteApplyApplication.1e0753b642bdc5f84b0d2652f2080958'
+
 
         exist_in_cache = cache.get(url)
 
@@ -14,4 +15,6 @@ class LinkedinApiGateway:
 
         cache.set(url, response.json(), timeout=60*60*24)
 
-        return response.json()
+        data = response.json()
+
+        return data['data']

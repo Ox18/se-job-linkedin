@@ -7,9 +7,11 @@ linkedinApiGateway = LinkedinApiGateway()
 class JobsController:
     def __init__(self, job_service: JobService):
         self.job_service = job_service
-
+    
     @method_decorator(handle_request)
-    def search(self, request: SecureHttpRequest):
-        jobForm = self.job_service.getFormJob(1, request.call)
+    def getFormJob(self, request: SecureHttpRequest):
+        jobPostingId = request.GET.get('jobPostingId')
 
-        return Response.ok(jobForm, "Search jobs")
+        jobForm = self.job_service.getFormJob(jobPostingId, request.call)
+
+        return Response.ok(jobForm, "Get job form")

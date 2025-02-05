@@ -7,5 +7,5 @@ linkedinApiGateway = LinkedinApiGateway()
 jobsController = JobsController(linkedinApiGateway)
 
 urlpatterns = [
-    path('secure/jobs/search', jobsController.search, name='jobs_search')
+    path('secure/jobs/form', jobsController.getFormJob, name='jobs_getFormJob'),
 ]
