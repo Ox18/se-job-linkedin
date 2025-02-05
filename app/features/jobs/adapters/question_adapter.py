@@ -5,7 +5,7 @@ class Question:
     type:str = ""
     ruler:str = ""
     urn:str = ""
-    choices: list[str] = []
+    choices: list = []
 
 def formAdapter(data):
 
@@ -26,8 +26,26 @@ def formAdapter(data):
         questionGroupings = form['questionGroupings']
 
         for questionGroup in questionGroupings:
+            if questionGroup['questionGroupingType'] == 'RESUME':
+                question = Question()
+                question.text = questionGroup['customizedFormSection']['fileUploadFormSection']['title']
+                question.required = True
+                question.type = 'resume'
+                question.urn = questionGroup['customizedFormSection']['fileUploadFormSection']['fileUploadFormElement']['formElementUrn']
+                choices = []
+                for resume in questionGroup['usedResumesResolutionResults']:
+                    # choices.append(resume['resume']['resumeName'])
+                    choice = {
+                        'filename': resume['fileName'],
+                        'urn': resume['entityUrn'],
+                        # 'download_url': resume['downloadUrl']
+                    }
+                    choices.append(choice)
+                question.choices = choices
 
-            ## check if formSection is Null
+                questions.append(question.__dict__)
+                continue
+
             if not questionGroup.get('formSection'):
                 continue
 
@@ -39,8 +57,6 @@ def formAdapter(data):
                 formElements = formElementGroup['formElements']
 
                 for formElement in formElements:
-                    # text = formElement['title']['text']
-                    # questions.append(text)
                     question = Question()
                     question.text = formElement['title']['text']
                     question.required = formElement['required']
