@@ -1,6 +1,6 @@
 from django.http import JsonResponse, HttpRequest
 from django.utils.decorators import method_decorator
-
+import requests
 
 class Response:
     @staticmethod
@@ -28,3 +28,5 @@ class AuthParams:
 
 class SecureHttpRequest(HttpRequest):
     auth: AuthParams = AuthParams()
+    call: requests.Session = requests.Session()
+
