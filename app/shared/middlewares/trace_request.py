@@ -1,5 +1,5 @@
 import uuid
-from django.http import HttpRequest
+from shared.utils.http import HttpRequest
 
 class TraceRequestMiddleware:
     def __init__(self, get_response):

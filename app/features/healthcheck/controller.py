@@ -1,11 +1,11 @@
 from .service import HealthcheckService
-from main.utils.response import Response
+from shared.utils.http import HttpRequest, Response
 
 class HealthcheckController:
     def __init__(self, healthcheckService: HealthcheckService):
         self.healtcheckService = healthcheckService
 
-    def check(self, request):
+    def check(self, request: HttpRequest):
         response = self.healtcheckService.check()
     
         return Response.ok(response, 'Healthcheck is OK')

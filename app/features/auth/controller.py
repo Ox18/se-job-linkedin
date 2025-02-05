@@ -1,5 +1,4 @@
-from main.utils.response import Response
-from django.http import HttpRequest
+from shared.utils.http import Response, HttpRequest
 from .services.auth_service import AuthService
 import json
 

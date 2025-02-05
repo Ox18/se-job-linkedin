@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import main.config as config
-from urllib.parse import urlparse
+import shared.config as config
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,11 +53,12 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'shared.middlewares.trace_request.TraceRequestMiddleware',
+    'shared.middlewares.session.SecureSessionMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'main.middlewares.traceRequest.TraceRequestMiddleware',
 ]
 
 CACHES = {

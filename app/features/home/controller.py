@@ -1,8 +1,6 @@
-from main.utils.response import Response
+from shared.utils.http import Response, HttpRequest, method_decorator
 from .service import HomeService
-from django.http import HttpRequest
-from django.utils.decorators import method_decorator
-from main.decorators.handleRequest import handle_request
+from shared.decorators.handle_request import handle_request
 
 import logging
 

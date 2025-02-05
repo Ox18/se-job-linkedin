@@ -23,7 +23,7 @@ AUTH_REQUEST_HEADERS = {
     "Accept-Language": "en-us",
 }
 
-class LinkedinGateway:
+class LinkedinAuthGateway:
     def __init__(self):
         self.session = requests.session()
         self.session.proxies.update({})

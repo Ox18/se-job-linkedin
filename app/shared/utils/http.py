@@ -1,4 +1,6 @@
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpRequest
+from django.utils.decorators import method_decorator
+
 
 class Response:
     @staticmethod
@@ -18,3 +20,11 @@ class Response:
                 'error': message
             }
         })
+    
+
+class AuthParams:
+    cookies: dict = {}
+    csrf: str = ''
+
+class SecureHttpRequest(HttpRequest):
+    auth: AuthParams = AuthParams()

@@ -1,13 +1,13 @@
 from ..repositories.session_repository import SessionRepository
-from shared.gateways.linkedin import LinkedinGateway
+from shared.gateways.linkedin_auth import LinkedinAuthGateway
 
 class AuthService:
-    def __init__(self, session_repository: SessionRepository, linkedin_gateway: LinkedinGateway):
+    def __init__(self, session_repository: SessionRepository, linkedin_auth_gateway: LinkedinAuthGateway):
         self.session_repository = session_repository
-        self.linkedin_gateway = linkedin_gateway
+        self.linkedin_auth_gateway = linkedin_auth_gateway
 
     def login(self, username: str, password: str):
-        response = self.linkedin_gateway.authenticate(username, password)
+        response = self.linkedin_auth_gateway.authenticate(username, password)
 
         token = self.session_repository.create(response)
 

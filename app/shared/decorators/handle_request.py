@@ -1,6 +1,6 @@
 from functools import wraps
-from main.utils.response import Response
-from main.errors.base import BaseException
+from shared.utils.http import Response
+from errors.base import BaseException
 
 def handle_request(view_func):
     @wraps(view_func)
