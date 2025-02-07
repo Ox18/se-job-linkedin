@@ -12,4 +12,5 @@ jobsController = JobsController(jobService)
 
 urlpatterns = [
     path('secure/jobs/form', jobsController.getFormJob, name='jobs_getFormJob'),
+    path('secure/jobs/suggest', jobsController.suggestJob, name='jobs_suggestJob')
 ]

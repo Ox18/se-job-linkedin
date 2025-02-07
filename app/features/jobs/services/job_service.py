@@ -11,3 +11,7 @@ class JobService:
 
         return formAdapter(formJob)
 
+    def suggestJob(self, keywords: str, call: requests):
+        jobs = self.linkedin_api.suggestJob(keywords, call)
+
+        return jobs

@@ -13,3 +13,11 @@ class JobsController:
         jobForm = self.job_service.getFormJob(jobPostingId, request.call)
 
         return Response.ok(jobForm, "Get job form")
+    
+    @method_decorator(handle_request)
+    def suggestJob(self, request: SecureHttpRequest):
+        keywords = request.GET.get('keywords')
+
+        jobs = self.job_service.suggestJob(keywords, request.call)
+
+        return Response.ok(jobs, "Suggest job")
